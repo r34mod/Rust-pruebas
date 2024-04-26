@@ -35,16 +35,22 @@ fn arrays() {
 
 fn mapas() {
 
-    let mut my_map: HashMap<&str, i32> = vec![("Pos1", 23)].into_iter().collect();
+    //let mut my_map: HashMap<String, i32> = vec![("Pos1", 23)].into_iter().collect();
+    let mut my_map: HashMap<String, i32> = HashMap::new();
     for x in 1..=10 {
         let palabra = random_words();
+        //let palabra2: &str = &palabra;
         my_map.insert(palabra, x);
-        println!("{:?}", my_map);
+        
     }
+    println!("{:?}", my_map);
     
 }
 
-fn random_words() -> &str {
-    let _random_letters = Alphanumeric.sample_string(&mut rand::thread_rng(),16);
+fn random_words() -> String {
+    let _random_letters: String = Alphanumeric.sample_string(&mut rand::thread_rng(),16);
+    //let palabra: &str = &*_random_letters;
+    return _random_letters;
 
 }
+
