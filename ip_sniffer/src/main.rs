@@ -15,13 +15,13 @@ struct Arguments {
 }
 
 impl Arguments {
-    fn new(args: &[Strring]) -> Result<Arguments, &'static str> {
-        if(args.len() < 2){
+    fn new(args: &[String]) -> Result<Arguments, &'static str> {
+        if args.len() < 2{
             return Err("Parametros insuficientes");
-        }else if(args.len() > 4){
+        }else if args.len() > 4{
             return Err("Demasiados parametros (MAX: 4)");
         }
-        let f = args[1].clone;
+        let f = args[1].clone();
         if let Ok(ipaddr) = IpAddr::from_str(&f){
             return Ok(Arguments {flag: String::from(""), ipaddr, threads: 4});
         }else{
@@ -74,13 +74,14 @@ fn main() {
             if err.contains("help") {
                 process::exit(0);
             }else{
-                eprintln!("", program, err);
+                eprintln!("{} prroblems: {}", program, err);
                 process::exit(0);
             }
         }
     );
 
     let num_threads = arguments.threads;
+    let addr = arguments.ipaddr;
     let (tx, rx) = channel();
     for i in 0 .. num_threads{
         let tx = tx.clone();
