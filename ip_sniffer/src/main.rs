@@ -101,5 +101,11 @@ fn main() {
     out.sort();
     for v in out {
         println!("{} esta abierto ", v);
+        if(v.contains("45")){
+            println!("{} SAMBA ", v);
+            for i in 0 .. num_threads{
+                //lanzar package
+            }
+        }
     }
 }
